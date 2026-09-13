@@ -1,0 +1,14 @@
+/*
+ * Intentionally empty.
+ *
+ * This file used to hold the stock Vite starter styles (.hero, #center,
+ * #next-steps, #docs, #spacer, .ticks, .counter). None of those selectors
+ * match anything in this app, the file is not imported anywhere (main.jsx
+ * imports only index.css), and between them those rules referenced seven
+ * custom properties that no theme declares: --accent, --accent-bg,
+ * --accent-border, --border, --shadow, --social-bg, --text-h.
+ *
+ * Leaving them in kept failing the "no referenced-but-undeclared custom
+ * property anywhere in src/" audit for no benefit. All real styling lives in
+ * src/index.css.
+ */

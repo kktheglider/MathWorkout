@@ -1,0 +1,1293 @@
+/* ==========================================================================
+   Design tokens
+   --------------------------------------------------------------------------
+   Every theme block below declares the COMPLETE token set. Nothing is left to
+   fall through to :root, because a light value inherited into a dark theme is
+   how text goes invisible.
+
+   Two tokens exist purely to break a conflict that a single --primary-color
+   cannot solve:
+     --gradient-from / --gradient-to  the header / primary-button / problem-box
+       fill. In every light theme these are literally the same values as
+       --secondary-color / --primary-color, so those surfaces render exactly as
+       before. In the dark theme they stay dark (so white label text is
+       readable) while --primary-color becomes a light accent (so primary-
+       coloured TEXT is readable on a dark surface). One token cannot be both.
+     --on-primary  the correct text colour to place on a --primary-color fill.
+       White in every light theme; near-black in the dark theme.
+   ========================================================================== */
+
+:root,
+[data-theme="default"] {
+  color-scheme: light;
+
+  --primary-color: #0d47a1;
+  --secondary-color: #1976d2;
+  --primary-rgb: 13, 71, 161;
+
+  --bg-color: #e2e8f0; /* slate-200 for better contrast against white panels */
+  --surface-color: #ffffff;
+  --surface-alt: #f8fafc; /* nested / secondary rows inside a surface */
+
+  --text-primary: #1e293b;
+  --text-secondary: #475569; /* slate-600, contrast 7.6:1 on white */
+  --text-color: #475569;     /* alias of --text-secondary; referenced by Results.jsx */
+  /* Genuinely neutral grey for quiet captions and index badges. Distinct from
+     --text-secondary, which several themes deliberately use as an ACCENT
+     (red in Nothing, green in Forest) and must keep doing so. */
+  --muted: #5b6676;
+  --text-light: #ffffff;
+  --on-primary: #ffffff;     /* text placed on a --primary-color fill */
+
+  --error-color: #dc2626;    /* red-600 */
+  --error-bg: #fef2f2;
+  --success-color: #046b4e;  /* emerald-700, one step down: #047857 measured 4.45:1
+                                against --bg-color, and the pass/fail counter on
+                                Results sits on the page background, not a card */
+  --success-bg: #ecfdf5;
+
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  --border-dark: #cbd5e1;
+
+  --gradient-from: #1976d2;  /* == --secondary-color */
+  --gradient-to: #0d47a1;    /* == --primary-color   */
+
+  --overlay-color: rgba(15, 23, 42, 0.5);
+  --focus-ring: #1976d2;
+
+  --tag-bg: #475569;
+  --tag-text: #ffffff;
+
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark; /* makes native <select> popups, scrollbars and form
+                         controls render dark instead of OS-default white */
+
+  --primary-color: #7fb0ff;   /* accent TEXT / borders — 7.4:1 on --surface-color */
+  --secondary-color: #2f6fed; /* accent FILL — white on it is 4.6:1 */
+  --primary-rgb: 127, 176, 255;
+
+  --bg-color: #0b1220;
+  --surface-color: #172033;
+  --surface-alt: #1e293b;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #a9b8cd; /* 8.1:1 on --surface-color */
+  --text-color: #a9b8cd;
+  /* Genuinely neutral grey for quiet captions and index badges. Distinct from
+     --text-secondary, which several themes deliberately use as an ACCENT
+     (red in Nothing, green in Forest) and must keep doing so. */
+  --muted: #9aa7b8;
+  --text-light: #ffffff;
+  --on-primary: #0b1220;     /* --primary-color is light here, so flip the label */
+
+  --error-color: #f87171;    /* red-400, 5.9:1 on --surface-color */
+  --error-bg: #3b1418;
+  --success-color: #34d399;  /* emerald-400, 8.5:1 on --surface-color */
+  --success-bg: #0d2c22;
+
+  --border-color: #2c3a52;
+  --border-light: #212c40;
+  --border-dark: #44546f;
+
+  --gradient-from: #1e3a8a;
+  --gradient-to: #12224f;
+
+  --overlay-color: rgba(0, 0, 0, 0.72);
+  --focus-ring: #7fb0ff;
+
+  --tag-bg: #44546f;
+  --tag-text: #f1f5f9;
+
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.55), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="forest"] {
+  color-scheme: light;
+
+  --primary-color: #166534;
+  --secondary-color: #15803d; /* green-700: white on it is 5.0:1 (was #22c55e at 2.3:1) */
+  --primary-rgb: 22, 101, 52;
+
+  --bg-color: #ecfdf5;
+  --surface-color: #ffffff;
+  --surface-alt: #f0fdf4;
+
+  --text-primary: #064e3b;
+  --text-secondary: #047857;
+  --text-color: #047857;
+  /* Genuinely neutral grey for quiet captions and index badges. Distinct from
+     --text-secondary, which several themes deliberately use as an ACCENT
+     (red in Nothing, green in Forest) and must keep doing so. */
+  --muted: #616b66;
+  --text-light: #ffffff;
+  --on-primary: #ffffff;
+
+  --error-color: #b91c1c;
+  --error-bg: #fef2f2;
+  --success-color: #047857;
+  --success-bg: #dcfce7;
+
+  --border-color: #d1fae5;
+  --border-light: #ecfdf5;
+  --border-dark: #a7f3d0;
+
+  --gradient-from: #15803d;
+  --gradient-to: #166534;
+
+  --overlay-color: rgba(6, 78, 59, 0.5);
+  --focus-ring: #15803d;
+
+  --tag-bg: #5f6a63;
+  --tag-text: #ffffff;
+
+  --shadow-sm: 0 1px 3px 0 rgba(6, 78, 59, 0.12), 0 1px 2px 0 rgba(6, 78, 59, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(6, 78, 59, 0.12), 0 2px 4px -1px rgba(6, 78, 59, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(6, 78, 59, 0.14), 0 4px 6px -2px rgba(6, 78, 59, 0.08);
+}
+
+[data-theme="sunset"] {
+  color-scheme: light;
+
+  --primary-color: #9a3412;
+  --secondary-color: #c2410c; /* orange-700: white on it is 5.2:1 (was #f97316 at 2.8:1) */
+  --primary-rgb: 154, 52, 18;
+
+  --bg-color: #fff7ed;
+  --surface-color: #ffffff;
+  --surface-alt: #fffbf5;
+
+  --text-primary: #431407;
+  --text-secondary: #9a3412;
+  --text-color: #9a3412;
+  /* Genuinely neutral grey for quiet captions and index badges. Distinct from
+     --text-secondary, which several themes deliberately use as an ACCENT
+     (red in Nothing, green in Forest) and must keep doing so. */
+  --muted: #6e665f;
+  --text-light: #ffffff;
+  --on-primary: #ffffff;
+
+  --error-color: #b91c1c;
+  --error-bg: #fef2f2;
+  --success-color: #047857;
+  --success-bg: #ecfdf5;
+
+  --border-color: #fed7aa;
+  --border-light: #ffedd5;
+  --border-dark: #fdba74;
+
+  --gradient-from: #c2410c;
+  --gradient-to: #9a3412;
+
+  --overlay-color: rgba(67, 20, 7, 0.5);
+  --focus-ring: #c2410c;
+
+  --tag-bg: #6e665f;
+  --tag-text: #ffffff;
+
+  --shadow-sm: 0 1px 3px 0 rgba(67, 20, 7, 0.12), 0 1px 2px 0 rgba(67, 20, 7, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(67, 20, 7, 0.12), 0 2px 4px -1px rgba(67, 20, 7, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(67, 20, 7, 0.14), 0 4px 6px -2px rgba(67, 20, 7, 0.08);
+}
+
+[data-theme="purple"] {
+  color-scheme: light;
+
+  --primary-color: #5b21b6;
+  --secondary-color: #7c3aed; /* violet-600: white on it is 5.7:1 (was #8b5cf6 at 4.2:1) */
+  --primary-rgb: 91, 33, 182;
+
+  --bg-color: #f5f3ff;
+  --surface-color: #ffffff;
+  --surface-alt: #faf8ff;
+
+  --text-primary: #2e1065;
+  --text-secondary: #6d28d9;
+  --text-color: #6d28d9;
+  /* Genuinely neutral grey for quiet captions and index badges. Distinct from
+     --text-secondary, which several themes deliberately use as an ACCENT
+     (red in Nothing, green in Forest) and must keep doing so. */
+  --muted: #69657a;
+  --text-light: #ffffff;
+  --on-primary: #ffffff;
+
+  --error-color: #be123c;
+  --error-bg: #fff1f2;
+  --success-color: #047857;
+  --success-bg: #ecfdf5;
+
+  --border-color: #ede9fe;
+  --border-light: #f5f3ff;
+  --border-dark: #ddd6fe;
+
+  --gradient-from: #7c3aed;
+  --gradient-to: #5b21b6;
+
+  --overlay-color: rgba(46, 16, 101, 0.5);
+  --focus-ring: #7c3aed;
+
+  --tag-bg: #69657a;
+  --tag-text: #ffffff;
+
+  --shadow-sm: 0 1px 3px 0 rgba(46, 16, 101, 0.12), 0 1px 2px 0 rgba(46, 16, 101, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(46, 16, 101, 0.12), 0 2px 4px -1px rgba(46, 16, 101, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(46, 16, 101, 0.14), 0 4px 6px -2px rgba(46, 16, 101, 0.08);
+}
+
+[data-theme="nothing-light"] {
+  color-scheme: light;
+
+  --primary-color: #000000;
+  --secondary-color: #dc2626;
+  --primary-rgb: 0, 0, 0;
+
+  --bg-color: #f1f5f9;
+  --surface-color: #ffffff;
+  --surface-alt: #f8fafc;
+
+  --text-primary: #000000;
+  --text-secondary: #b91c1c; /* red-700: 6.5:1 (was #dc2626 at 4.8:1) */
+  --text-color: #b91c1c;
+  /* Genuinely neutral grey for quiet captions and index badges. Distinct from
+     --text-secondary, which several themes deliberately use as an ACCENT
+     (red in Nothing, green in Forest) and must keep doing so. */
+  --muted: #616161;
+  --text-light: #ffffff;
+  --on-primary: #ffffff;
+
+  --error-color: #b91c1c;
+  --error-bg: #fef2f2;
+  --success-color: #047857;
+  --success-bg: #ecfdf5;
+
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  --border-dark: #cbd5e1;
+
+  --gradient-from: #dc2626;
+  --gradient-to: #000000;
+
+  --overlay-color: rgba(0, 0, 0, 0.55);
+  --focus-ring: #dc2626;
+
+  --tag-bg: #000000;
+  --tag-text: #ffffff;
+
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  /* Outfit arrives over the network and is loaded non-blocking, so the app
+     paints in the fallback first (and stays there offline). Give it a real
+     system stack rather than bare `sans-serif`. */
+  font-family: 'Outfit', system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-color);
+  /* Subtle themed glow behind the centered app card — barely visible on a phone
+     (the card fills the screen), gives desktop an intentional backdrop. */
+  background-image: radial-gradient(1100px 560px at 50% -10%, rgba(var(--primary-rgb), 0.10), transparent 60%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Scroll lock for open modals */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Keyboard focus must be visible everywhere. Mouse/touch users never see it. */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Form controls inherit the theme. The inline `background: transparent;
+   color: inherit` styles on the <select> elements win for the closed control,
+   but the popup list is styled from these rules plus `color-scheme` above. */
+select,
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+select {
+  color: var(--text-primary);
+  background-color: var(--surface-color);
+}
+
+/* 44px tap target, scoped to settings rows so it does not resize the compact
+   inline selects other screens embed in their own layouts. */
+.settings-item select {
+  min-height: 44px;
+}
+
+select option,
+select optgroup {
+  background-color: var(--surface-color);
+  color: var(--text-primary);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--secondary-color);
+}
+
+/* The tables settings previously used transform: scale(1.5) on radios, which
+   scales the paint but not the hit box. Size them properly instead. */
+input[type="radio"].mw-radio,
+input[type="checkbox"].mw-radio {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   App layout
+   ========================================================================== */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;  /* fallback for browsers without dvh */
+  height: 100dvh; /* dynamic viewport height: survives the mobile URL bar */
+  max-width: 680px; /* a touch wider so desktop feels intentional, not a phone strip */
+  margin: 0 auto;
+  background-color: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+/* On a real desktop viewport, frame the app card with a border + rounded corners
+   so it reads as a focused product surface rather than a full-bleed column. */
+@media (min-width: 760px) {
+  .app-container {
+    height: min(920px, calc(100dvh - 48px));
+    margin: 24px auto;
+    border-radius: 22px;
+    border: 1px solid var(--border-color);
+  }
+  .header { border-radius: 22px 22px 0 0; }
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--gradient-to), var(--gradient-from));
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.header-btn {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 44px minimum tap target (was 40px with 0.5rem padding only) */
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.header-btn:active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.header-btn:focus-visible {
+  outline: 3px solid var(--text-light);
+  outline-offset: -3px;
+}
+
+/* Page Content */
+.page-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 1.25rem;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to));
+  color: var(--text-light);
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Several screens override .btn-primary's background with an inline
+   `background: var(--secondary-color)`. Inline styles win, so the disabled
+   look has to come from opacity + cursor rather than a background rule that
+   the inline style would beat. */
+.btn-primary:disabled,
+.btn-primary[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  filter: grayscale(0.5);
+}
+
+/* Secondary / outline button in the app's visual language */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-dark);
+  background: var(--surface-color);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-secondary:active:not(:disabled) {
+  background: var(--surface-alt);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  border-color: var(--error-color);
+  color: var(--error-color);
+  background: var(--surface-color);
+}
+
+.btn-danger:active:not(:disabled) {
+  background: var(--error-bg);
+}
+
+/* ==========================================================================
+   Settings list
+   ========================================================================== */
+
+.settings-list {
+  background: var(--surface-color);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+}
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.settings-value {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* A settings row that behaves as a button (opens a picker). Additive. */
+.settings-item-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  font-family: inherit;
+  /* buttons do not inherit font-size, so .settings-value would drop to the
+     browser's 13px default inside one */
+  font-size: 1rem;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.settings-item-btn:last-child {
+  border-bottom: none;
+}
+
+.settings-item-btn:active {
+  background: var(--surface-alt);
+}
+
+/* Nested / indented sub-row (Time, Number of questions). Replaces the
+   hardcoded #f8fafc that went white-on-white in dark mode. */
+.settings-subitem {
+  padding-left: 2.5rem;
+  background: var(--surface-alt);
+}
+
+.settings-section-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 0.5rem 0.5rem;
+}
+
+.settings-hint {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  padding: 0 1.25rem 1rem;
+  margin-top: -0.25rem;
+}
+
+.settings-note {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* Segmented control (Questions: 10 / 20 / 40) */
+.seg-group {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.seg-btn {
+  flex: 1 1 0;
+  min-height: 44px;
+  padding: 0.6rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-dark);
+  background: var(--surface-color);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.seg-btn[aria-pressed="true"] {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--text-light);
+}
+
+/* ==========================================================================
+   Toggle switch
+   ========================================================================== */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex: 0 0 auto;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--border-dark);
+  transition: .3s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ffffff;
+  transition: .4s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+  background-color: var(--secondary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* The real <input> is visually hidden, so focus has to be drawn on the track */
+.switch input:focus-visible + .slider {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Game
+   ========================================================================== */
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.game-container .page-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0.5rem));
+  height: 100%;
+}
+
+.problem-box {
+  background: linear-gradient(145deg, var(--gradient-from), var(--gradient-to));
+  color: var(--text-light);
+  border-radius: 20px;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.05);
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-weight: 500;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  word-break: break-word;
+  /* Was `'Outfit', monospace` — Outfit is not monospaced and always won, so the
+     rule never did anything. What this actually needs is fixed-width digits so
+     the problem does not shift as it changes; Outfit ships tabular figures. */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.answer-box {
+  background: var(--surface-color);
+  border-radius: 16px;
+  padding: 1.25rem;
+  text-align: center;
+  font-size: clamp(2.5rem, 8vw, 3rem);
+  font-weight: 600;
+  min-height: 80px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 0.5rem;
+  border: 2px solid var(--border-dark);
+  transition: border-color 0.2s, background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: break-all;
+  color: var(--primary-color);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.answer-box.error {
+  border-color: var(--error-color);
+  background-color: var(--error-bg); /* was hardcoded #fef2f2 */
+  color: var(--error-color);
+}
+
+/* Keypad */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+  margin-top: auto; /* Push keypad to the bottom */
+  padding-bottom: 0.5rem;
+}
+
+.keypad-btn {
+  background: var(--surface-color);
+  color: var(--text-primary);
+  border: 1px solid var(--border-dark);
+  border-radius: 12px;
+  padding: 1.25rem 0.5rem; /* Taller buttons for better touch targets */
+  font-size: 1.75rem;
+  font-weight: 600;
+  font-family: inherit;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.1s;
+}
+
+.keypad.size-Small .keypad-btn {
+  padding: 0.75rem 0.5rem;
+  font-size: 1.5rem;
+  min-height: 44px;
+}
+
+.keypad.size-Large .keypad-btn {
+  padding: 1.5rem 0.5rem;
+  font-size: 2rem;
+}
+
+.keypad-btn:active {
+  background: var(--border-dark);
+}
+
+.keypad-btn.action-btn {
+  background: var(--secondary-color);
+  color: var(--text-light); /* was hardcoded white */
+  border: none;
+}
+
+.keypad-btn.action-btn:active {
+  /* --gradient-to == --primary-color in every light theme, so this renders
+     identically; in dark it stays dark instead of flashing a light accent. */
+  background: var(--gradient-to);
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.countdown-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  color: var(--primary-color);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 20px rgba(var(--primary-rgb), 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0); }
+}
+
+/* ==========================================================================
+   Results
+   ========================================================================== */
+
+.chart-container {
+  background: var(--surface-color);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.results-list {
+  background: var(--surface-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.result-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+/* NOTE: this used to be declared twice (once with an 8px radius and a
+   border-bottom, once with a 16px radius). The second rule silently won every
+   property it repeated. Merged into a single declaration. */
+.detailed-history {
+  background: var(--surface-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.history-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-light); /* was hardcoded #f1f5f9 */
+}
+
+.history-q:last-child {
+  border-bottom: none;
+}
+
+/* Small ordinal / index tag (Results history). Theme-aware replacement for the
+   hardcoded #94a3b8 chips — see report note for Results.jsx. --tag-bg is a
+   NEUTRAL grey in every theme, so these badges stay quiet rather than picking
+   up the theme's accent hue. For plain muted caption TEXT use --muted. */
+.index-tag {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 0 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes flashHighlight {
+  0%   { box-shadow: 0 0 0 2px transparent; }
+  50%  { box-shadow: 0 0 0 3px var(--primary-color); }
+  100% { box-shadow: 0 0 0 2px transparent; }
+}
+
+.flash-highlight {
+  animation: flashHighlight 1s ease-in-out 3;
+}
+
+/* ==========================================================================
+   Modal / dialog (additive — used by Settings and the tables pickers)
+   ========================================================================== */
+
+.mw-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-color);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.mw-modal {
+  background: var(--surface-color);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  max-height: min(80dvh, 80vh);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.mw-modal.narrow {
+  max-width: 320px;
+}
+
+.mw-modal-header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mw-modal-header h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.mw-modal-body {
+  flex: 1 1 auto;
+  min-height: 0; /* without this the scroll area refuses to shrink in a flex column */
+  overflow-y: auto;
+  padding: 1rem;
+  color: var(--text-primary);
+}
+
+.mw-modal-footer {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.mw-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.mw-icon-btn:active {
+  background: var(--surface-alt);
+}
+
+/* Number pickers (base tables / factors) */
+.mw-num-toolbar {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem 0;
+}
+
+.mw-num-toolbar .btn-secondary {
+  flex: 1 1 0;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  min-height: 40px;
+}
+
+.mw-num-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.mw-num-btn {
+  min-height: 44px;
+  padding: 0.6rem 0.25rem;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--secondary-color);
+  background: var(--surface-color);
+  color: var(--secondary-color);
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.mw-num-btn[aria-pressed="true"] {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--text-light);
+}
+
+/* Radio option row inside a picker */
+.mw-radio-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 44px;
+  padding: 0.35rem 0.25rem;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.mw-radio-row:active {
+  background: var(--surface-alt);
+}
+
+.mw-selection-count {
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem 0;
+}
+
+/* Inline warning / callout */
+.mw-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border-color);
+  background: var(--surface-alt);
+  color: var(--text-secondary);
+}
+
+.mw-callout.warn {
+  border-color: var(--error-color);
+  background: var(--error-bg);
+  color: var(--error-color);
+}
+
+.mw-callout.info {
+  border-color: var(--border-dark);
+}
+
+.mw-confirm-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-dark);
+  background: var(--surface-alt);
+  color: var(--text-primary);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.mw-kv {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.mw-kv:last-child {
+  border-bottom: none;
+}
+
+.mw-kv span:first-child {
+  color: var(--text-secondary);
+}
+
+.mw-kv span:last-child {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Visually hidden but readable by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Home — mode cards
+   ========================================================================== */
+
+.home-page { padding: 1rem; padding-bottom: 2rem; }
+
+.home-heading {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 1.75rem 0.25rem 0.85rem;
+}
+.home-page > .home-heading:first-of-type { margin-top: 0.25rem; }
+
+.hero-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.1rem 1.25rem;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  color: var(--text-light);
+  background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to));
+  box-shadow: var(--shadow-md);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.hero-card .hc-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; flex-shrink: 0;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--text-light);
+}
+.hero-card .hc-body { flex: 1; min-width: 0; }
+.hero-card .hc-title { display: block; font-size: 1.15rem; font-weight: 600; }
+.hero-card .hc-desc { display: block; font-size: 0.85rem; opacity: 0.88; margin-top: 1px; }
+.hero-card .hc-chev { flex-shrink: 0; opacity: 0.85; }
+.hero-card:active { transform: translateY(2px); box-shadow: var(--shadow-sm); }
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.75rem;
+}
+
+.mode-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-color);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: transform 0.12s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.mode-card .mc-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: 12px;
+  background: rgba(var(--primary-rgb), 0.12);
+  color: var(--primary-color);
+}
+.mode-card .mc-body { flex: 1; min-width: 0; }
+.mode-card .mc-title { display: block; font-size: 1rem; font-weight: 650; color: var(--text-primary); line-height: 1.25; }
+.mode-card .mc-desc { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+.mode-card .mc-chev { flex-shrink: 0; color: var(--muted); }
+.mode-card:active { transform: translateY(1px); }
+
+/* ==========================================================================
+   Desktop hover states (pointer devices only — never on touch)
+   ========================================================================== */
+
+@media (hover: hover) {
+  .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: var(--shadow-lg); filter: brightness(1.04); }
+  .btn-secondary:hover:not(:disabled) { background: var(--surface-alt); border-color: var(--border-dark); }
+  .seg-btn:hover:not([aria-pressed="true"]) { background: var(--surface-alt); }
+  .keypad-btn:hover { background: var(--surface-alt); }
+  .keypad-btn.action-btn:hover { filter: brightness(1.06); background: var(--secondary-color); }
+  .settings-item-btn:hover { background: var(--surface-alt); }
+  .mw-num-btn:hover:not([aria-pressed="true"]) { background: var(--surface-alt); }
+  .header-btn:hover { background: rgba(255, 255, 255, 0.16); }
+  .hero-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); filter: brightness(1.03); }
+  .mode-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--border-dark); }
+  .mode-card:hover .mc-chev { color: var(--primary-color); transform: translateX(2px); transition: transform 0.15s ease, color 0.15s ease; }
+}
+
+/* ==========================================================================
+   Motion preferences
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .countdown-circle {
+    animation: none;
+    transform: none;
+  }
+
+  .flash-highlight {
+    animation: none;
+    box-shadow: 0 0 0 3px var(--primary-color);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: none;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Math Workout",
+  "short_name": "Math Workout",
+  "description": "Timed mental-arithmetic drills with per-question analytics. Works offline.",
+  "id": "/math/",
+  "start_url": "/math/",
+  "scope": "/math/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#e2e8f0",
+  "theme_color": "#0d47a1",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

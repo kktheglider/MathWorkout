@@ -1,0 +1,298 @@
+/* Analytics page — scoped styles. Uses only the app's CSS custom properties
+   so all six themes (including dark) stay correct. Never use --text-color. */
+
+.an-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-bottom: 2.5rem;
+}
+
+/* ---------- Scope selector ---------- */
+.an-scope {
+  background: var(--surface-color);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.an-scope .settings-item {
+  gap: 0.75rem;
+}
+
+.an-select {
+  border: 1px solid var(--border-dark);
+  border-radius: 6px;
+  background: var(--bg-color);
+  color: inherit;
+  padding: 4px 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  max-width: 62%;
+}
+
+/* ---------- Cards ---------- */
+.an-card {
+  background: var(--surface-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 0.9rem;
+}
+
+.an-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.15rem;
+}
+
+.an-card-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Headline ---------- */
+.an-headline {
+  text-align: center;
+  padding: 1.1rem 0.9rem;
+}
+
+.an-headline-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1.1;
+}
+
+.an-headline-value span {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-left: 2px;
+}
+
+.an-headline-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.an-delta {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-dark);
+}
+
+.an-delta.good { color: var(--success-color); }
+.an-delta.bad { color: var(--error-color); }
+.an-delta.flat { color: var(--text-secondary); }
+
+/* ---------- Tiles ---------- */
+.an-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+.an-tile {
+  background: var(--surface-color);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 0.7rem 0.6rem;
+  text-align: center;
+  min-width: 0;
+}
+
+.an-tile-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.an-tile-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1.15;
+  word-break: break-word;
+}
+
+.an-tile-note {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+}
+
+/* ---------- Charts ---------- */
+.an-chart {
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+
+.an-chart.tall { height: 260px; }
+
+/* ---------- Tables ---------- */
+.an-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.an-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 320px;
+}
+
+.an-table th,
+.an-table td {
+  padding: 0.45rem 0.5rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
+}
+
+.an-table th {
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.an-table th:first-child,
+.an-table td:first-child {
+  text-align: left;
+}
+
+.an-table tbody tr:last-child td { border-bottom: none; }
+
+.an-table td.pos { color: var(--success-color); font-weight: 600; }
+.an-table td.neg { color: var(--error-color); font-weight: 600; }
+
+/* ---------- Two-column table split ---------- */
+.an-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+@media (min-width: 480px) {
+  .an-split { grid-template-columns: 1fr 1fr; }
+}
+
+.an-split h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Lists ---------- */
+.an-list { display: flex; flex-direction: column; gap: 0.3rem; }
+
+.an-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.88rem;
+}
+
+.an-row:last-child { border-bottom: none; }
+
+.an-row-main { font-weight: 500; }
+
+.an-row-meta {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.an-badge {
+  background: var(--bg-color);
+  border: 1px solid var(--border-dark);
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+/* ---------- Bar meter (error anatomy) ---------- */
+.an-meter-row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr 2.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.22rem 0;
+}
+
+.an-meter-label { color: var(--text-secondary); }
+
+.an-meter-track {
+  background: var(--bg-color);
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+}
+
+.an-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+  border-radius: 999px;
+  min-width: 2px;
+}
+
+.an-meter-value {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ---------- Empty / thin states ---------- */
+.an-empty {
+  background: var(--surface-color);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.an-empty h3 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+}
+
+.an-note {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 0.35rem 0;
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Math Workout">
+  <rect x="28" y="28" width="456" height="456" rx="110" fill="#0d47a1"/>
+  <g stroke="#ffffff" stroke-width="59" stroke-linecap="round">
+    <line x1="166" y1="166" x2="346" y2="346"/>
+    <line x1="346" y1="166" x2="166" y2="346"/>
+  </g>
+  <g fill="#64b5f6">
+    <circle cx="95" cy="95" r="27"/><circle cx="417" cy="95" r="27"/>
+    <circle cx="95" cy="417" r="27"/><circle cx="417" cy="417" r="27"/>
+  </g>
+</svg>

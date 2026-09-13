@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Math Workout</title>
+    <meta name="description" content="Timed mental-arithmetic drills - multiplication, tables, roots and exponents - with per-question timing and analytics. Works offline." />
+
+    <link rel="icon" type="image/svg+xml" href="/math/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/math/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/math/apple-touch-icon.png" />
+    <link rel="manifest" href="/math/manifest.webmanifest" />
+
+    <meta name="theme-color" content="#0d47a1" id="meta-theme-color" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Math Workout" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Fonts load without blocking first paint; the app has a system fallback stack. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" />
+    </noscript>
+
+    <script>
+      /* Apply the saved theme before first paint. Without this the app renders in the
+         default light theme for a frame and then repaints, which reads as a flicker
+         on every launch for anyone using the dark theme. */
+      (function () {
+        try {
+          var raw = localStorage.getItem('mathWorkoutSettings');
+          var theme = raw ? (JSON.parse(raw) || {}).theme : null;
+          /* The hub at / writes its own 'theme' key on this origin; only honour it
+             when the value is one this app actually defines. */
+          var bar = { 'default': '#0d47a1', dark: '#111827', forest: '#166534', sunset: '#9a3412', purple: '#5b21b6', 'nothing-light': '#000000' };
+          if (!bar[theme]) theme = localStorage.getItem('theme');
+          if (!bar[theme]) theme = 'default';
+          document.documentElement.setAttribute('data-theme', theme);
+          var meta = document.getElementById('meta-theme-color');
+          if (meta && bar[theme]) meta.setAttribute('content', bar[theme]);
+        } catch (e) {
+          /* private mode or blocked storage - fall through to the default theme */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui, sans-serif; text-align: center">
+        <h1 style="font-size: 1.25rem">Math Workout needs JavaScript</h1>
+        <p>Enable JavaScript in your browser to run the drills.</p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
