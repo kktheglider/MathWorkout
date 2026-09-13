@@ -17,6 +17,15 @@
   <a href="#privacy">Privacy</a>
 </p>
 
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/React-19-61dafb" alt="React 19">
+  <img src="https://img.shields.io/badge/Vite-8-646cff" alt="Vite 8">
+  <img src="https://img.shields.io/badge/PWA-offline-5a0fc8" alt="Offline PWA">
+  <img src="https://img.shields.io/badge/data-100%25%20local-0d9488" alt="100% local">
+  <a href="https://github.com/kktheglider/MathWorkout/stargazers"><img src="https://img.shields.io/github/stars/kktheglider/MathWorkout?style=social" alt="GitHub stars"></a>
+</p>
+
 ---
 
 Math Workout generates mathematically sound problems across addition, subtraction, multiplication,
